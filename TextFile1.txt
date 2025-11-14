@@ -1,0 +1,1 @@
+quiero una clase genérica de acceso a datos en C# que permita realizar operaciones CRUD (Crear, Leer, Actualizar, Eliminar) para cualquier entidad. La clase debe utilizar Entity Framework Core 8.0.21.
