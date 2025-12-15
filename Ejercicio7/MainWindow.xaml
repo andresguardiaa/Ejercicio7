@@ -27,7 +27,7 @@
             </Button>
             <StackPanel x:Name="Menu"  Margin="0,10,0,0" Grid.Row="1">
                 <TextBlock Text="Your Stage" Foreground="White" FontSize="16" FontWeight="Bold" Margin="20,0,0,10"/>
-                <Button HorizontalAlignment="Stretch" BorderBrush="Transparent" Click="MarticuloButton_Click" Background="Transparent" HorizontalContentAlignment="Left">
+                <Button HorizontalAlignment="Stretch" BorderBrush="Transparent" x:Name="MarticuloButton" Click="MarticuloButton_Click" Background="Transparent" HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal" Margin="-10,0,0,0" >
                         <materialDesign:PackIcon Kind="Bookshelf" Foreground="White" Margin="0,0,5,0"/>
                         <TextBlock Text="ModeloArtículo" Foreground="White" FontSize="16" FontWeight="Light"/>

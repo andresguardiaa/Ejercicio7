@@ -1,37 +1,37 @@
-﻿using MahApps.Metro.Controls;
-using MaterialDesignThemes.Wpf;
-using System.Text;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
 
 namespace Ejercicio7
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+   
+
+
     public partial class MainWindow : Window
     {
-        public MainWindow()
+
+        private readonly Window1 _ventanaModeloArticulo;
+        private readonly Window2 _ventanaUsuario;
+
+        public MainWindow(Window1 window1, Window2 window2)
         {
             InitializeComponent();
+            _ventanaModeloArticulo = window1;
+            _ventanaUsuario = window2;
         }
 
-        private void MartriculoButton_Click(object sender, RoutedEventArgs e)
-        {
-            var dlg = new Window1();
-            dlg.ShowDialog();
-        }
 
         private void Articulobtn_Click(object sender, RoutedEventArgs e)
         {
-            var dlg = new Window2();
+            var dlg = _ventanaUsuario;
+            dlg.ShowDialog();
+        }
+
+        private void MarticuloButton_Click(object sender, RoutedEventArgs e)
+        {
+            var dlg = _ventanaModeloArticulo;
             dlg.ShowDialog();
         }
     }

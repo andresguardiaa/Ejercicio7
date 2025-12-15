@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ejercicio7.MVVM;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,37 @@ namespace Ejercicio7
     /// </summary>
     public partial class Window2 : Window
     {
-        public Window2()
+
+        private MVUsuario _mvUsuario;
+
+        public Window2(MVUsuario mVUsuario)
         {
             InitializeComponent();
+            _mvUsuario = mVUsuario;
+        }
+
+        private async void diagUsuario_Loaded(object sender, RoutedEventArgs e)
+        {
+            await _mvUsuario.Inicializa();
+            DataContext = _mvUsuario;
+        }
+
+        private void btnCancelarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            DialogResult = false;
+        }
+
+        private void btnGuardarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                _mvUsuario.GuardarUsuario();
+                DialogResult = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Apaña");
+            }
         }
     }
 }

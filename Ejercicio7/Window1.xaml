@@ -28,10 +28,10 @@
                 <TextBlock Text="Gestión modelo Artículo" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="26" TextAlignment="Center"/>
             </Border>
             <TextBlock Text="Los campos en negrita son obligatorios*" Grid.Column="0" VerticalAlignment="Center" Margin="40,0,0,0" FontSize="16" FontWeight="Bold" Grid.Row="1"/>
-            <TextBox Grid.Row="2" Grid.Column="0" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Artículo*" x:Name="txtnombre"/>
-            <TextBox Grid.Row="3" Grid.Column="0" Margin="20,15,20,15" Foreground="Black" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Modelo" x:Name="txtmodelo"/>
-            <TextBox Grid.Row="2" Grid.Column="1" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Marca*" x:Name="txtmarca"/>
-            <ComboBox x:Name="cmbTipoArticulo" DisplayMemberPath="Nombre" Grid.Row="3" Grid.Column="1" Margin="20,0,20,0" Height="43" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tipo de artículo"/>
+            <TextBox Grid.Row="2" Text="{Binding modeloArticulo.Nombre}" Grid.Column="0" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Artículo*" x:Name="txtnombre"/>
+            <TextBox Grid.Row="3" Text="{Binding modeloArticulo.Modelo}" Grid.Column="0" Margin="20,15,20,15" Foreground="Black" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Modelo" x:Name="txtmodelo"/>
+            <TextBox Grid.Row="2" Text="{Binding modeloArticulo.Marca}" Grid.Column="1" Margin="20,15,20,15" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Marca*" x:Name="txtmarca"/>
+            <ComboBox x:Name="cmbTipoArticulo" SelectedItem="{Binding modeloArticulo.TipoNavigation}" ItemsSource="{Binding tipoArticuloList}" DisplayMemberPath="Nombre" Grid.Row="3" Grid.Column="1" Margin="20,0,20,0" Height="43" Foreground="Black" FontSize="16" FontWeight="Bold" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Tipo de artículo"/>
             <TextBox Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="20,0,20,0" FontSize="16" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Descripción" x:Name="txtdescripcion" />
 
             <StackPanel Grid.Row="5" Grid.Column="1" Orientation="Horizontal">

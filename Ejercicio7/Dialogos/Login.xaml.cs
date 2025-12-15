@@ -1,20 +1,9 @@
 ﻿using di.proyecto.clase._2025.Backend.Servicios;
+using di.proyecto.clase._2025.Frontend.Mensajes;
 using Ejercicio7.Backend.Modelo;
 using MahApps.Metro.Controls;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Ejercicio7.Dialogos
 {
@@ -25,14 +14,16 @@ namespace Ejercicio7.Dialogos
     {
         private DiinventarioexamenContext _diinventarioexamenContext;
         private UsuarioRepository _usuarioRepository;
-        private ILogger<GenericRepository<Usuario>> _logger;
+        //private ILogger<GenericRepository<Usuario>> _logger;
+        private readonly MainWindow _ventanaPrincipal;
 
-        public Login()
+        public Login(UsuarioRepository usuarioRepository, MainWindow ventanaPrincipal)
         {
             InitializeComponent();
             //Instancia contexto y repositorio
-            _diinventarioexamenContext = new DiinventarioexamenContext();
-            _usuarioRepository = new UsuarioRepository(_diinventarioexamenContext, null);
+            //_diinventarioexamenContext = DiinventarioexamenContext();
+            _usuarioRepository = usuarioRepository;
+            _ventanaPrincipal = ventanaPrincipal;
         }
 
         private async void btnLogin_Click(object sender, RoutedEventArgs e)
@@ -42,35 +33,23 @@ namespace Ejercicio7.Dialogos
                 bool isAuthenticated = await _usuarioRepository.LoginAsync(txtUsuario.Text, passClave.Password);
                 if (isAuthenticated)
                 {
-                    MainWindow ventanaPrincipal = new MainWindow();
-                    ventanaPrincipal.Show();
+                    _ventanaPrincipal.Show();
                     this.Close();
                 
                 } else {
-                    MessageBox.Show("Usuario o clave incorrectos.", "Error de autenticación", MessageBoxButton.OK, MessageBoxImage.Error);
+                   MensajeError.Mostrar("Error de autenticación", "Usuario o clave incorrectos.", 3);
 
                 }
 
             }
             else
             {
-                MessageBox.Show("Por favor, introduce usuario y clave.", "Error de autenticación", MessageBoxButton.OK, MessageBoxImage.Error);
+                MensajeAdvertencia.Mostrar("Campos vacíos", "Por favor, ingrese usuario y clave.", 3);
 
             }
 
 
         }
 
-        private void ventanaLogin_Loaded(object sender, RoutedEventArgs e)
-        {
-            _diinventarioexamenContext = new DiinventarioexamenContext();
-            //Permite registrar eventos y errores
-            _logger = LoggerFactory.Create(builder => 
-            builder.AddConsole()
-            ).CreateLogger<GenericRepository<Usuario>>();
-
-            _usuarioRepository = new UsuarioRepository(_diinventarioexamenContext, _logger);
-
-        }
     }
 }
