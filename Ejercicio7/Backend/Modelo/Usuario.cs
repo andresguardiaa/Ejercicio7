@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Ejercicio7.MVVM.Base;
 using Microsoft.EntityFrameworkCore;
 
 namespace Ejercicio7.Backend.Modelo;
@@ -13,7 +14,7 @@ namespace Ejercicio7.Backend.Modelo;
 [Index("Rol", Name = "fk_roles_usuario_idx")]
 [Index("Tipo", Name = "fk_tipos_usuario_idx")]
 [Index("Username", Name = "username_UNIQUE", IsUnique = true)]
-public partial class Usuario
+public partial class Usuario : ValidatableViewModel
 {
     [Key]
     [Column("idusuario")]
@@ -25,11 +26,16 @@ public partial class Usuario
     /// </summary>
     [Column("username")]
     [StringLength(20)]
+    [Required(ErrorMessage = "El username es obligatoria")]
     public string Username { get; set; } = null!;
+    
 
     [Column("password")]
     [StringLength(200)]
+    [Required(ErrorMessage = "El username es obligatoria")]
     public string Password { get; set; } = null!;
+    
+
 
     [Column("tipo")]
     public int Tipo { get; set; }
@@ -95,12 +101,18 @@ public partial class Usuario
 
     [ForeignKey("Rol")]
     [InverseProperty("Usuarios")]
+    [Required(ErrorMessage = "El username es obligatoria")]
     public virtual Rol RolNavigation { get; set; } = null!;
+    
 
     [InverseProperty("UsuarioNavigation")]
     public virtual ICollection<Salidum> Salida { get; set; } = new List<Salidum>();
+    
+
 
     [ForeignKey("Tipo")]
     [InverseProperty("Usuarios")]
+    [Required(ErrorMessage = "El username es obligatoria")]
     public virtual Tipousuario TipoNavigation { get; set; } = null!;
+    
 }

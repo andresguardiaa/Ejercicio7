@@ -11,9 +11,19 @@ namespace Ejercicio7.MVVM.Base
         /// Botón del formulario que queremos que se active/desactive en función
         /// de si hay errores en la validación de los campos
         /// </summary>
-        public bool HasErrors => errorCount > 0;
+        private bool _hasErrors;
+        public bool HasErrors
+        {
+            get => _hasErrors;
+            set => SetProperty(ref _hasErrors, value);
+        }
 
-        
+        private void UpdateHasErrors()
+        {
+            HasErrors = errorCount == 0;
+        }
+
+
         /// <summary>
         /// Variable que llev la cuenta de los errores que hay en el formulario
         /// </summary>
@@ -63,7 +73,7 @@ namespace Ejercicio7.MVVM.Base
                     {
                         throw new Exception("Acción desconocida");
                     }
-            }
+            } UpdateHasErrors();
             //btnGuardar.IsEnabled = errorCount == 0;
         }
         // Métodos CRUD genéricos asíncronos con manejo de excepciones

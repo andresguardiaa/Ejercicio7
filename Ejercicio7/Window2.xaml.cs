@@ -1,4 +1,5 @@
-﻿using Ejercicio7.MVVM;
+﻿using di.proyecto.clase._2025.Frontend.Mensajes;
+using Ejercicio7.MVVM;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace Ejercicio7
         private async void diagUsuario_Loaded(object sender, RoutedEventArgs e)
         {
             await _mvUsuario.Inicializa();
+            this.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(_mvUsuario.OnErrorEvent));
             DataContext = _mvUsuario;
         }
 
@@ -40,17 +42,23 @@ namespace Ejercicio7
             DialogResult = false;
         }
 
-        private void btnGuardarUsuario_Click(object sender, RoutedEventArgs e)
+        private async void btnGuardarUsuario_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if(!_mvUsuario.IsValid(this))
             {
-                _mvUsuario.GuardarUsuario();
+
+                MensajeError.Mostrar("Victor Julai", "Xokas gigachad", 0);
+                    MessageBox.Show("Apaña");
+                
+            }
+            else if(await _mvUsuario.GuardarUsuario())
+            {
+                MensajeError.Mostrar("Victor Padre", "Xokas Madre", 1);
                 DialogResult = true;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Apaña");
-            }
+            
         }
+
+        
     }
 }

@@ -42,8 +42,9 @@ namespace Ejercicio7.MVVM
             _rolList = await GetAllAsync<Rol>(_rolRepository);
         }
 
-        public async Task GuardarUsuario()
+        public async Task<bool> GuardarUsuario()
         {
+            bool resultado = true;
             try
             {
                 if (usuario.Idusuario == 0)
@@ -59,7 +60,9 @@ namespace Ejercicio7.MVVM
             catch (Exception ex)
             {
                 SnackbarMessageQueue.Enqueue($"Error al guardar el usuario: {ex.Message}");
+                resultado = false;
             }
+            return resultado;
         }
     }
 }

@@ -23,15 +23,17 @@ namespace Ejercicio7.MVVM
 
         public List<Tipoarticulo> tipoArticuloList => _tipoArticuloList;
 
-        public Modeloarticulo modeloArticulo { 
+        public Modeloarticulo modeloArticulo
+        { 
             get => _modeloArticulo;
             set => SetProperty(ref _modeloArticulo, value);
         }
 
 
 
-        public MVArticulo(ModeloArticuloRepository modeloArticuloRepository, TipoArticuloRepository tipoArticuloRepository ) { 
-        
+        public MVArticulo(ModeloArticuloRepository modeloArticuloRepository, TipoArticuloRepository tipoArticuloRepository)
+        {
+
             _modeloArticuloRepository = modeloArticuloRepository;
             _tipoArticuloRepository = tipoArticuloRepository;
             _modeloArticulo = new Modeloarticulo();
@@ -41,7 +43,7 @@ namespace Ejercicio7.MVVM
 
         public async Task Inicializa()
         {
-            _tipoArticuloList = await GetAllAsync<Tipoarticulo>(_tipoArticuloRepository); 
+            _tipoArticuloList = await GetAllAsync<Tipoarticulo>(_tipoArticuloRepository);
         }
 
 
