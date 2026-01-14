@@ -47,13 +47,12 @@ namespace Ejercicio7
             if(!_mvUsuario.IsValid(this))
             {
 
-                MensajeError.Mostrar("Victor Julai", "Xokas gigachad", 0);
+                    MensajeError.Mostrar("Victor Julai", "Xokas gigachad", 0);
                     MessageBox.Show("Apaña");
                 
             }
             else if(await _mvUsuario.GuardarUsuario())
             {
-                MensajeError.Mostrar("Victor Padre", "Xokas Madre", 1);
                 DialogResult = true;
             }
             

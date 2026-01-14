@@ -19,9 +19,11 @@ namespace Ejercicio7.MVVM
 
         private List<Tipousuario> _tipoUsuarioList;
         private List<Rol> _rolList;
+        private List<Usuario> _usuarioList;
 
         public List<Tipousuario> tipoUsuarioList => _tipoUsuarioList;
         public List<Rol> rolList => _rolList;
+        public List<Usuario> usuarioList => _usuarioList;
         public Usuario usuario
         {
             get => _usuario;
@@ -40,6 +42,7 @@ namespace Ejercicio7.MVVM
         {
             _tipoUsuarioList = await GetAllAsync<Tipousuario>(_tipoUsuarioRepository);
             _rolList = await GetAllAsync<Rol>(_rolRepository);
+            _usuarioList = await GetAllAsync<Usuario>(_usuarioRepository);
         }
 
         public async Task<bool> GuardarUsuario()

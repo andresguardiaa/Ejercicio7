@@ -39,10 +39,10 @@
                         <TextBlock Text="Usuario" Foreground="White" FontSize="16" FontWeight="Light"/>
                     </StackPanel>
                 </Button>
-                <Button HorizontalAlignment="Stretch" BorderBrush="Transparent" Background="Transparent" HorizontalContentAlignment="Left">
+                <Button HorizontalAlignment="Stretch" BorderBrush="Transparent" x:Name="listadoUsuarios" Click="listadoUsuarios_Click" Background="Transparent" HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal" Margin="-10,0,0,0" >
                         <materialDesign:PackIcon Kind="KnifeMilitary" Foreground="White" Margin="0,0,5,0" />
-                        <TextBlock Text="Features" Foreground="White" FontSize="16" FontWeight="Light"/>
+                        <TextBlock Text="Listado Usuarios" Foreground="White" FontSize="16" FontWeight="Light"/>
                     </StackPanel>
                 </Button>
                 <Button HorizontalAlignment="Stretch" BorderBrush="Transparent" Background="Transparent" HorizontalContentAlignment="Left">
@@ -60,7 +60,7 @@
 
             </StackPanel>
         </Grid>
-        <Grid>
+        <Grid x:Name="panelListaUsuarios">
 
         </Grid>
     </DockPanel>

@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="Ejercicio7.Dialogos.UCListadoUsuarios"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ejercicio7.Dialogos"
+             mc:Ignorable="d" 
+             x:Name="ListadoUsuariosControl"
+             Loaded="ListadoUsuariosControl_Loaded"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <TextBlock Text="Listado de Usuarios" FontSize="24" FontWeight="Bold" Margin="10" HorizontalAlignment="Center"/>
+        </Grid>
+        <Grid>
+            <DataGrid ItemsSource="{Binding usuarioList}"
+                      AutoGenerateColumns="False"
+                      CanUserAddRows="False"
+                      ColumnWidth="*">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID" Binding="{Binding Idusuario}"/>
+                    <DataGridTextColumn Header="Nombre" Binding="{Binding Username}"/>
+                    <DataGridTextColumn Header="Contraseña" Binding="{Binding Password}"/>
+                    <DataGridTextColumn Header="Rol" Binding="{Binding RolNavigation.Nombre}"/>
+                    <DataGridTextColumn Header="Tipo" Binding="{Binding TipoNavigation.Nombre}"/>
+                    <DataGridTemplateColumn Header="Apellidos">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Apellido1}" Margin="0,0,10,0"/>
+                                    <TextBlock Text="{Binding Apellido2}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="Nº Usuarios" Binding="{Binding Ficherousuarios.Count}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>

@@ -68,6 +68,7 @@ namespace Ejercicio7
             //services.AddTransient<Login>();
             services.AddTransient<Window1>();
             services.AddTransient<Window2>();
+            services.AddTransient<UCListadoUsuarios>();
             //services.AddTransient<UCArticulos>();
             //services.AddTransient<DialogoModeloArticulo>();
             services.AddTransient<MVArticulo>();
