@@ -24,11 +24,12 @@ namespace Ejercicio7.Dialogos
         private MVUsuario _mvUsuario;
         private Window2 _dialogoUsuario;
         private readonly IServiceProvider _serviceProvider;
-        public UCListadoUsuarios(MVUsuario mVUsuario, Window2 dialogoUsuario)
+        public UCListadoUsuarios(MVUsuario mVUsuario,IServiceProvider serviceProvider, Window2 dialogoUsuario)
         {
             InitializeComponent();
             _mvUsuario = mVUsuario;
             _dialogoUsuario = dialogoUsuario;
+            _serviceProvider = serviceProvider;
 
         }
 
@@ -42,5 +43,11 @@ namespace Ejercicio7.Dialogos
         {
 
         }
+
+        private void cmbTipoUsuario_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            _mvUsuario.Filtrar();
+        }
+
     }
 }

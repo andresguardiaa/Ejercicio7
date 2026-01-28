@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Data;
 
 namespace Ejercicio7.MVVM
 {
@@ -20,15 +21,37 @@ namespace Ejercicio7.MVVM
         private List<Tipousuario> _tipoUsuarioList;
         private List<Rol> _rolList;
         private List<Usuario> _usuarioList;
+        private Tipousuario _tipoUsuarioSeleccionado;
+        private ListCollectionView _listaUsuariosFiltro;
 
         public List<Tipousuario> tipoUsuarioList => _tipoUsuarioList;
         public List<Rol> rolList => _rolList;
         public List<Usuario> usuarioList => _usuarioList;
+        
+
+        private List<Predicate<Usuario>> _criterios;
+        private Predicate<Usuario> _criterioTipo;
+        private Predicate<Object> _predicadoFiltro;
+
+
+        public ListCollectionView listaUsuariosFiltro
+        {
+            get => _listaUsuariosFiltro;
+            set => SetProperty(ref _listaUsuariosFiltro, value);
+        }
+
         public Usuario usuario
         {
             get => _usuario;
             set => SetProperty(ref _usuario, value);
         }
+
+        public Tipousuario tipoUsuarioSeleccionado
+        {
+            get => _tipoUsuarioSeleccionado;
+            set => SetProperty(ref _tipoUsuarioSeleccionado, value);
+        }
+
 
         public MVUsuario(UsuarioRepository usuarioRepository, TipoUsuarioRepository tipoUsuarioRepository, RolRepository rolRepository)
         {
@@ -43,6 +66,12 @@ namespace Ejercicio7.MVVM
             _tipoUsuarioList = await GetAllAsync<Tipousuario>(_tipoUsuarioRepository);
             _rolList = await GetAllAsync<Rol>(_rolRepository);
             _usuarioList = await GetAllAsync<Usuario>(_usuarioRepository);
+            listaUsuariosFiltro = new ListCollectionView(_usuarioList);
+            _criterios = new List<Predicate<Usuario>>();
+            InicializaCriterios();
+            _predicadoFiltro = new Predicate<Object>(FiltroCriterios);
+
+
         }
 
         public async Task<bool> GuardarUsuario()
@@ -66,6 +95,36 @@ namespace Ejercicio7.MVVM
                 resultado = false;
             }
             return resultado;
+        }
+        public void Filtrar()
+        {
+            ActualizaCriterios();
+            listaUsuariosFiltro.Filter = _predicadoFiltro;
+        }
+
+        private void InicializaCriterios()
+        {
+            _criterioTipo = new Predicate<Usuario>(u => u.TipoNavigation != null && u.TipoNavigation.Equals(_tipoUsuarioSeleccionado));
+        }
+
+        private void ActualizaCriterios()
+        {
+            _criterios.Clear();
+            if (tipoUsuarioSeleccionado != null)
+            {
+                _criterios.Add(_criterioTipo);
+            }
+        }
+
+        private bool FiltroCriterios(object item)
+        {
+            bool correcto = true;
+            Usuario usuario = (Usuario) item;
+            if(_criterios != null)
+            {
+                correcto = _criterios.TrueForAll(x => x(usuario));
+            }
+            return correcto;
         }
     }
 }

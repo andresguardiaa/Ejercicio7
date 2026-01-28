@@ -10,10 +10,24 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <DockPanel>
         <Grid DockPanel.Dock="Top">
-            <TextBlock Text="Listado de Usuarios" FontSize="24" FontWeight="Bold" Margin="10" HorizontalAlignment="Center"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Text="Listado de Usuarios" FontSize="24" FontWeight="Bold" Margin="10" HorizontalAlignment="Center"/>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <TextBlock Text="FILTROS: "></TextBlock>
+                <TextBlock Text="Por tipo de usuario"></TextBlock>
+                <ComboBox DisplayMemberPath="Nombre"
+                          ItemsSource="{Binding tipoUsuarioList}"
+                          SelectedItem="{Binding tipoUsuarioSeleccionado}"
+                          x:Name="cmbTipoUsuario"
+                          SelectionChanged="cmbTipoUsuario_SelectionChanged"
+                          Width="100"/>
+            </StackPanel>
         </Grid>
         <Grid>
-            <DataGrid ItemsSource="{Binding usuarioList}"
+            <DataGrid ItemsSource="{Binding listaUsuariosFiltro}"
                       SelectedItem="{Binding usuario}"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
