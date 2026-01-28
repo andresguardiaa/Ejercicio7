@@ -14,6 +14,7 @@
         </Grid>
         <Grid>
             <DataGrid ItemsSource="{Binding usuarioList}"
+                      SelectedItem="{Binding usuario}"
                       AutoGenerateColumns="False"
                       CanUserAddRows="False"
                       ColumnWidth="*">
@@ -33,8 +34,40 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="Nº Usuarios" Binding="{Binding Ficherousuarios.Count}"/>
+                    <DataGridTextColumn Header="Nº Usuarios" Binding="{Binding Salida.Count}" IsReadOnly="True"/>
                 </DataGrid.Columns>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Editar Usuario" x:Name="cmEditarUsuario" Click="cmEditarUsuario_Click"/>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
+                <DataGrid.RowDetailsTemplate>
+                    <DataTemplate>
+                        <DockPanel>
+                            <Grid DockPanel.Dock="Top">
+                                <TextBlock Text="Listado de ..." FontSize="14" FontWeight="Bold" Margin="10"/>
+                            </Grid>
+                            <Grid>
+                                <ListBox ItemsSource="{Binding Salida}">
+                                    <ListBox.ItemTemplate>
+                                        <DataTemplate>
+                                            <StackPanel Orientation="Horizontal" Margin="5">
+                                                <TextBlock>
+                                                    <Run Text="Fecha de salida: " FontWeight="Bold"/>
+                                                    <Run Text="{Binding Fechasalida}"/>
+                                                </TextBlock>
+                                                <TextBlock>
+                                                    <Run Text="Fecha de devolución: " FontWeight="Bold"/>
+                                                    <Run Text="{Binding Fechadevolucion}"/>
+                                                </TextBlock>
+                                            </StackPanel>
+                                        </DataTemplate>
+                                    </ListBox.ItemTemplate>
+                                </ListBox>
+                            </Grid>
+                        </DockPanel>
+                    </DataTemplate>
+                </DataGrid.RowDetailsTemplate>
             </DataGrid>
         </Grid>
     </DockPanel>

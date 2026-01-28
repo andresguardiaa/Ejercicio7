@@ -22,17 +22,25 @@ namespace Ejercicio7.Dialogos
     public partial class UCListadoUsuarios : UserControl
     {
         private MVUsuario _mvUsuario;
-        public UCListadoUsuarios(MVUsuario mVUsuario)
+        private Window2 _dialogoUsuario;
+        private readonly IServiceProvider _serviceProvider;
+        public UCListadoUsuarios(MVUsuario mVUsuario, Window2 dialogoUsuario)
         {
             InitializeComponent();
             _mvUsuario = mVUsuario;
-           
+            _dialogoUsuario = dialogoUsuario;
+
         }
 
         private async void ListadoUsuariosControl_Loaded(object sender, RoutedEventArgs e)
         {
             await _mvUsuario.Inicializa();
             this.DataContext = _mvUsuario;
+        }
+
+        private void cmEditarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
