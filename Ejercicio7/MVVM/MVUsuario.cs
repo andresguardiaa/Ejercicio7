@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 
 namespace Ejercicio7.MVVM
@@ -32,7 +33,14 @@ namespace Ejercicio7.MVVM
         private List<Predicate<Usuario>> _criterios;
         private Predicate<Usuario> _criterioTipo;
         private Predicate<Object> _predicadoFiltro;
+        private Predicate<Usuario> _criterioNombre;
 
+        private string _filtroUsername;
+        public string filtroUsername
+        {
+            get => _filtroUsername;
+            set => SetProperty(ref _filtroUsername, value);
+        }
 
         public ListCollectionView listaUsuariosFiltro
         {
@@ -105,6 +113,7 @@ namespace Ejercicio7.MVVM
         private void InicializaCriterios()
         {
             _criterioTipo = new Predicate<Usuario>(u => u.TipoNavigation != null && u.TipoNavigation.Equals(_tipoUsuarioSeleccionado));
+            _criterioNombre = new Predicate<Usuario>(u => !string.IsNullOrEmpty(u.Username) && !string.IsNullOrEmpty(filtroUsername) && u.Username.ToLower().Contains(filtroUsername.ToLower()));
         }
 
         private void ActualizaCriterios()
@@ -114,6 +123,16 @@ namespace Ejercicio7.MVVM
             {
                 _criterios.Add(_criterioTipo);
             }
+
+            
+            if (!string.IsNullOrEmpty(filtroUsername))
+            {
+                _criterios.Add(_criterioNombre);
+            } else
+            {
+                MessageBox.Show("El filtro de nombre de usuario está vacío o es incorrecto.", "Error" , MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private bool FiltroCriterios(object item)

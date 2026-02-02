@@ -49,5 +49,9 @@ namespace Ejercicio7.Dialogos
             _mvUsuario.Filtrar();
         }
 
+        private void btnFiltrar_Click(object sender, RoutedEventArgs e)
+        {
+            _mvUsuario.Filtrar();
+        }
     }
 }
