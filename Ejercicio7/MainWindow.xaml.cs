@@ -16,13 +16,15 @@ namespace Ejercicio7
         private Window1 _ventanaModeloArticulo;
         private Window2 _ventanaUsuario;
         private UCListadoUsuarios _listadoUsuarios;
+        private UCAdminisracion _uCAdminisracion;
 
-        public MainWindow(Window1 window1, Window2 window2, UCListadoUsuarios uCListadoUsuarios)
+        public MainWindow(Window1 window1, Window2 window2, UCListadoUsuarios uCListadoUsuarios, UCAdminisracion uCAdminisracion)
         {
             InitializeComponent();
             _ventanaModeloArticulo = window1;
             _ventanaUsuario = window2;
             _listadoUsuarios = uCListadoUsuarios;
+            _uCAdminisracion = uCAdminisracion;
         }
 
 
@@ -40,8 +42,14 @@ namespace Ejercicio7
 
         private void listadoUsuarios_Click(object sender, RoutedEventArgs e)
         {
-            if(panelListaUsuarios!= null) panelListaUsuarios.Children.Clear();
+            panelListaUsuarios.Children.Clear();
             panelListaUsuarios.Children.Add(_listadoUsuarios);
+        }
+
+        private void btnUcAdministracion_Click(object sender, RoutedEventArgs e)
+        {
+            panelListaUsuarios.Children.Clear();
+            panelListaUsuarios.Children.Add(_uCAdminisracion);
         }
     }
 }

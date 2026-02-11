@@ -2,12 +2,6 @@
 using Ejercicio7.Backend.Modelo;
 using Ejercicio7.Backend.Servicios;
 using Ejercicio7.MVVM.Base;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 
 namespace Ejercicio7.MVVM
@@ -34,8 +28,14 @@ namespace Ejercicio7.MVVM
         private Predicate<Usuario> _criterioTipo;
         private Predicate<Object> _predicadoFiltro;
         private Predicate<Usuario> _criterioNombre;
-
+        private Predicate<Usuario> _criterioNumSalidas;
+        private int _filtroNumSalidas;
         private string _filtroUsername;
+        public int filtroNumSalidas
+        {
+            get => _filtroNumSalidas;
+            set => SetProperty(ref _filtroNumSalidas, value);
+        }
         public string filtroUsername
         {
             get => _filtroUsername;
@@ -114,6 +114,7 @@ namespace Ejercicio7.MVVM
         {
             _criterioTipo = new Predicate<Usuario>(u => u.TipoNavigation != null && u.TipoNavigation.Equals(_tipoUsuarioSeleccionado));
             _criterioNombre = new Predicate<Usuario>(u => !string.IsNullOrEmpty(u.Username) && !string.IsNullOrEmpty(filtroUsername) && u.Username.ToLower().Contains(filtroUsername.ToLower()));
+            _criterioNumSalidas = new Predicate<Usuario>(u => u.Salida != null && u.Salida.Count >= filtroNumSalidas);
         }
 
         private void ActualizaCriterios()
@@ -128,9 +129,14 @@ namespace Ejercicio7.MVVM
             if (!string.IsNullOrEmpty(filtroUsername))
             {
                 _criterios.Add(_criterioNombre);
-            } else
+            }/* else
             {
                 MessageBox.Show("El filtro de nombre de usuario está vacío o es incorrecto.", "Error" , MessageBoxButton.OK, MessageBoxImage.Error);
+            }*/
+
+            if (filtroNumSalidas > 0)
+            {
+                _criterios.Add(_criterioNumSalidas);
             }
 
         }

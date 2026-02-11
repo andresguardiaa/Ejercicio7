@@ -64,15 +64,20 @@ namespace Ejercicio7
             services.AddScoped<RolRepository>();
             services.AddScoped<ModeloArticuloRepository>();
             services.AddScoped<TipoArticuloRepository>();
+            services.AddScoped<EspacioRepository>();
+            services.AddScoped<DepartamentoRepository>();
             // Registramos las interfaces de usuario
             //services.AddTransient<Login>();
             services.AddTransient<Window1>();
             services.AddTransient<Window2>();
             services.AddTransient<UCListadoUsuarios>();
+            services.AddTransient<UCAdminisracion>();
+            services.AddTransient<UCArbol>();
             //services.AddTransient<UCArticulos>();
             //services.AddTransient<DialogoModeloArticulo>();
             services.AddTransient<MVArticulo>();
             services.AddTransient<MVUsuario>();
+            services.AddTransient<MVEspacios>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

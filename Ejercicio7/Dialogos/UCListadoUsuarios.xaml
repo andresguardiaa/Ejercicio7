@@ -29,7 +29,26 @@
                          Text="{Binding filtroUsername}"
                          Width="150"
                          />
+                
+
+                <TextBlock Text="Nº Salidas (Mín):" VerticalAlignment="Center" Margin="10,0,5,0"/>
+
+                <Slider x:Name="sldSalidas"
+                        Width="100"
+                        Minimum="0"
+                        Maximum="90"
+                        TickFrequency="1"
+                        IsSnapToTickEnabled="True"
+                        VerticalAlignment="Center"
+                        Value="{Binding filtroNumSalidas, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <TextBlock Text="{Binding ElementName=sldSalidas, Path=Value}" 
+                           VerticalAlignment="Center" 
+                           Margin="5,0,0,0" 
+                           FontWeight="Bold"
+                           Width="20"/>
                 <Button x:Name="btnFiltrar" Content="Filtrar" Click="btnFiltrar_Click"/>
+
             </StackPanel>
         </Grid>
         <Grid>
