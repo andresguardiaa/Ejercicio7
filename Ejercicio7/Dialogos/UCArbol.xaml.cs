@@ -20,7 +20,7 @@ namespace Ejercicio7.Dialogos
         private async void ucArbolEspacios_Loaded(object sender, RoutedEventArgs e)
         {
             await _mVEspacios.Inicializa();
-            DataContext = _mVEspacios;
+            this.DataContext = _mVEspacios;
         }
 
         private void treeEspacios_SelectedItemChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
@@ -30,11 +30,6 @@ namespace Ejercicio7.Dialogos
             {
                 dgArticulosEspacio.ItemsSource = ((Espacio) treeEspacios.SelectedItem).Articulos;
             }
-        }
-
-        private void btnActualizarArt_Click(object sender, RoutedEventArgs e)
-        {
-
         }
     }
 }

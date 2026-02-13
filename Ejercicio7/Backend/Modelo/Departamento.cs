@@ -26,4 +26,9 @@ public partial class Departamento
 
     [InverseProperty("DepartamentoNavigation")]
     public virtual ICollection<Usuario> Usuarios { get; set; } = new List<Usuario>();
+
+    public override string ToString()
+    {
+        return Nombre;
+    }
 }

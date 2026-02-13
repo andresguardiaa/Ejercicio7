@@ -39,4 +39,9 @@ public partial class Espacio
     [ForeignKey("Padre")]
     [InverseProperty("InversePadreNavigation")]
     public virtual Espacio? PadreNavigation { get; set; }
+
+        public override string ToString()
+        {
+            return Nombre;
+    }
 }

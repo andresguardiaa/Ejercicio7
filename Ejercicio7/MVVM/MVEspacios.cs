@@ -19,26 +19,22 @@ namespace Ejercicio7.MVVM
         
         private Articulo _articuloSeleccionado;
 
+        public List<Espacio> espacios => _espacios;
         public List<Modeloarticulo> modeloarticulos => _modelosArticulo;
         public List<Departamento> departamentos => _departamentos;
         public List<Usuario> usuarios => _usuarios;
         public Articulo articuloSeleccionado
         {
-            get { return _articuloSeleccionado; }
+            get => _articuloSeleccionado; 
             set
             {
-                SetProperty(ref _articuloSeleccionado, value);
+                _articuloSeleccionado = value;
+                OnPropertyChanged(nameof(articuloSeleccionado));
+
             }
         }
 
-        public List<Espacio> espacios
-        {
-            get { return _espacios; }
-            set
-            {
-                SetProperty(ref _espacios, value);
-            }
-        }
+        
 
         public MVEspacios(EspacioRepository espacioRepository, ModeloArticuloRepository modeloArticuloRepository, UsuarioRepository usuarioRepository, DepartamentoRepository departamentoRepository)
         {

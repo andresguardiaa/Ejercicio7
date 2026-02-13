@@ -44,4 +44,9 @@ public partial class Modeloarticulo
     [ForeignKey("Tipo")]
     [InverseProperty("Modeloarticulos")]
     public virtual Tipoarticulo? TipoNavigation { get; set; }
+
+    public override string ToString()
+        {
+            return $"{Nombre}";
+    }
 }

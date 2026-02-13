@@ -69,24 +69,33 @@
             <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedItem="{Binding articuloSeleccionado.DepartamentoNavigation}" materialDesign:HintAssist.Hint="Departamento" ItemsSource="{Binding departamentos}" DisplayMemberPath="Nombre" Grid.Column="2" Grid.Row="2" Width="150"/>
             <TextBox Style="{StaticResource MaterialDesignFloatingHintTextBox}" Text="{Binding articuloSeleccionado.Observaciones}" Grid.Column="3" Grid.Row="1" Width="150"/>
             <ComboBox Style="{StaticResource MaterialDesignFloatingHintComboBox}" SelectedItem="{Binding articuloSeleccionado.EspacioNavigation}" materialDesign:HintAssist.Hint="Espacio" ItemsSource="{Binding espacios}" DisplayMemberPath="Nombre" Grid.Column="3" Grid.Row="2" Width="150"/>
-            <Button Content="Actualizar" x:Name="btnActualizarArt" Click="btnActualizarArt_Click" Grid.Column="4" Grid.Row="1" Margin="20,0,0,0" Width="100"/>
+            <Button Content="Actualizar" x:Name="btnActualizarArt" Grid.Column="4" Grid.Row="1" Margin="20,0,0,0" Width="100"/>
         </Grid>
         
-        <Grid x:Name="panelCentral"> 
-            <DataGrid x:Name="dgArticulosEspacio" AutoGenerateColumns="False" ColumnWidth="*" SelectedItem="{Binding articuloSeleccionado}">
+        <Grid x:Name="panelCentral">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <DataGrid x:Name="dgArticulosEspacio"  Style="{StaticResource MahApps.Styles.DataGrid}" 
+                      SelectionMode="Single" 
+                      AutoGenerateColumns="False" CanUserAddRows="False" ColumnWidth="*" SelectedItem="{Binding articuloSeleccionado}">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Nº Serie" Binding="{Binding Numserie}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Modelo" Binding="{Binding ModeloNavigation.Nombre}" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Usuario" Binding="{Binding UsuarioaltaNavigation.Nombre}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Nº Serie" Binding="{Binding Numserie}"/>
+                    <DataGridTextColumn Header="Modelo" Binding="{Binding ModeloNavigation.Nombre}"/>
+                    <DataGridTextColumn Header="Usuario" Binding="{Binding UsuarioaltaNavigation}"/>
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <DatePicker SelectedDate="{Binding Fechaalta}" IsEnabled="False"/>
+                                <DatePicker SelectedDate="{Binding Fechaalta}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
             </DataGrid>
+            
+            
+            
         </Grid>
 
         
