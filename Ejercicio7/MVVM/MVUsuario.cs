@@ -18,11 +18,13 @@ namespace Ejercicio7.MVVM
         private List<Usuario> _usuarioList;
         private Tipousuario _tipoUsuarioSeleccionado;
         private ListCollectionView _listaUsuariosFiltro;
+        private Window2 _dialogoUsuario;
 
         public List<Tipousuario> tipoUsuarioList => _tipoUsuarioList;
         public List<Rol> rolList => _rolList;
         public List<Usuario> usuarioList => _usuarioList;
         
+
 
         private List<Predicate<Usuario>> _criterios;
         private Predicate<Usuario> _criterioTipo;
@@ -60,6 +62,7 @@ namespace Ejercicio7.MVVM
             set => SetProperty(ref _tipoUsuarioSeleccionado, value);
         }
 
+        
 
         public MVUsuario(UsuarioRepository usuarioRepository, TipoUsuarioRepository tipoUsuarioRepository, RolRepository rolRepository)
         {

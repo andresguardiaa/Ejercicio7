@@ -1,4 +1,5 @@
 ﻿using Ejercicio7.MVVM;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,11 +25,10 @@ namespace Ejercicio7.Dialogos
         private MVUsuario _mvUsuario;
         private Window2 _dialogoUsuario;
         private readonly IServiceProvider _serviceProvider;
-        public UCListadoUsuarios(MVUsuario mVUsuario,IServiceProvider serviceProvider, Window2 dialogoUsuario)
+        public UCListadoUsuarios(MVUsuario mVUsuario,IServiceProvider serviceProvider)
         {
             InitializeComponent();
             _mvUsuario = mVUsuario;
-            _dialogoUsuario = dialogoUsuario;
             _serviceProvider = serviceProvider;
 
         }
@@ -52,6 +52,20 @@ namespace Ejercicio7.Dialogos
         private void btnFiltrar_Click(object sender, RoutedEventArgs e)
         {
             _mvUsuario.Filtrar();
+        }
+
+       
+
+        private async void btnEditarUsuario_Click(object sender, RoutedEventArgs e)
+        {
+
+            _dialogoUsuario = _serviceProvider.GetRequiredService<Window2>();
+            await _dialogoUsuario.Inicializa(_mvUsuario.usuario);
+            _dialogoUsuario.ShowDialog();
+            if(_dialogoUsuario.DialogResult == true)
+            {
+                
+            }
         }
     }
 }

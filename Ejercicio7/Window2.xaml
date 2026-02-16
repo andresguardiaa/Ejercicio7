@@ -7,7 +7,7 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"        
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         x:Name="diagUsuario"
-        Loaded="diagUsuario_Loaded"
+        
         mc:Ignorable="d"
         Title="Window2" Height="450" Width="800">
     <DockPanel>

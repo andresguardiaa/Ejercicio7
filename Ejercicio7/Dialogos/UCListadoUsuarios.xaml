@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Ejercicio7.Dialogos"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d" 
              x:Name="ListadoUsuariosControl"
              Loaded="ListadoUsuariosControl_Loaded"
@@ -75,11 +76,6 @@
                     </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Nº Usuarios" Binding="{Binding Salida.Count}" IsReadOnly="True"/>
                 </DataGrid.Columns>
-                <DataGrid.ContextMenu>
-                    <ContextMenu>
-                        <MenuItem Header="Editar Usuario" x:Name="cmEditarUsuario" Click="cmEditarUsuario_Click"/>
-                    </ContextMenu>
-                </DataGrid.ContextMenu>
                 <DataGrid.RowDetailsTemplate>
                     <DataTemplate>
                         <DockPanel>
@@ -107,6 +103,18 @@
                         </DockPanel>
                     </DataTemplate>
                 </DataGrid.RowDetailsTemplate>
+                <DataGrid.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="Editar Usuario" x:Name="btnEditarUsuario" Click="btnEditarUsuario_Click">
+                            <MenuItem.Icon>
+                                <materialDesign:PackIcon Kind="AccountEdit"/>
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <MenuItem>
+                            
+                        </MenuItem>
+                    </ContextMenu>
+                </DataGrid.ContextMenu>
             </DataGrid>
         </Grid>
     </DockPanel>

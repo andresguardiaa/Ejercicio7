@@ -1,4 +1,5 @@
 ﻿using di.proyecto.clase._2025.Frontend.Mensajes;
+using Ejercicio7.Backend.Modelo;
 using Ejercicio7.MVVM;
 using System;
 using System.Collections.Generic;
@@ -30,12 +31,12 @@ namespace Ejercicio7
             _mvUsuario = mVUsuario;
         }
 
-        private async void diagUsuario_Loaded(object sender, RoutedEventArgs e)
+        /*private async void diagUsuario_Loaded(object sender, RoutedEventArgs e)
         {
             await _mvUsuario.Inicializa();
             this.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(_mvUsuario.OnErrorEvent));
             DataContext = _mvUsuario;
-        }
+        }*/
 
         private void btnCancelarUsuario_Click(object sender, RoutedEventArgs e)
         {
@@ -56,6 +57,14 @@ namespace Ejercicio7
                 DialogResult = true;
             }
             
+        }
+
+        public async Task Inicializa(Usuario usuario)
+        {
+                       await _mvUsuario.Inicializa();
+                        _mvUsuario.usuario = usuario;
+                       this.AddHandler(Validation.ErrorEvent, new RoutedEventHandler(_mvUsuario.OnErrorEvent));
+                       this.DataContext = _mvUsuario;
         }
 
         
