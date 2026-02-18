@@ -73,11 +73,14 @@ namespace Ejercicio7
             services.AddTransient<UCListadoUsuarios>();
             services.AddTransient<UCAdminisracion>();
             services.AddTransient<UCArbol>();
+            services.AddTransient<UCListadoArticulos>();
+            services.AddTransient<UCTreeViewArticulos>();
             //services.AddTransient<UCArticulos>();
             //services.AddTransient<DialogoModeloArticulo>();
             services.AddTransient<MVArticulo>();
             services.AddTransient<MVUsuario>();
             services.AddTransient<MVEspacios>();
+            services.AddTransient<MVArticuloReal>();
         }
 
         protected override void OnStartup(StartupEventArgs e)

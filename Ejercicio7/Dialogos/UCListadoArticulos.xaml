@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="Ejercicio7.Dialogos.UCListadoArticulos"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Ejercicio7.Dialogos"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+                x:Name="listadoArticulos"
+             Loaded="listadoArticulos_Loaded"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <DockPanel>
+        <TextBlock DockPanel.Dock="Top" Text="Listado de Artículos" FontSize="24" FontWeight="Bold" Margin="10" HorizontalAlignment="Center"/>
+        <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+            <TextBlock Text="FILTROS: " Margin="10"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Por Nº de serie" Margin="10,0,10,0"/>
+                <TextBox Text="{Binding filtroNumSerie, UpdateSourceTrigger=PropertyChanged}" Width="100" />
+                <!-- El UpdateSourceTrigger es para que se actualice el filtro al escribir, sin necesidad de perder el foco del TextBox -->
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="Por departamento" Margin="10,0,10,0"/>
+                <ComboBox ItemsSource="{Binding listaDepartamentos}" DisplayMemberPath="Nombre" SelectedItem="{Binding departamentoSeleccionado}"  Width="150"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="Tiene N de serie" Margin="10,0,10,0"/>
+                <CheckBox IsChecked="{Binding filtroTieneNumSerie}" />
+            </StackPanel>
+            <Button Content="Filtrar" Margin="10" x:Name="btnFiltrar" Click="btnFiltrar_Click" />
+        </StackPanel>
+        <Grid DockPanel.Dock="Bottom">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Artículo seleccionado:" FontWeight="Bold" Margin="10"/>
+            <TextBox Grid.Row="1" Grid.Column="0" Style="{StaticResource MaterialDesignFloatingHintTextBox}" materialDesign:HintAssist.Hint="Número de serie" Text="{Binding articuloSeleccionadoReal.Numserie}"/>
+            <ComboBox Grid.Row="1" Grid.Column="1" Style="{StaticResource MaterialDesignFloatingHintComboBox}" materialDesign:HintAssist.Hint="Departamento" ItemsSource="{Binding listaDepartamentos}" DisplayMemberPath="Nombre" SelectedItem="{Binding articuloSeleccionadoReal.DepartamentoNavigation}"/>
+            <DatePicker Grid.Row="1" Grid.Column="2" SelectedDate="{Binding articuloSeleccionadoReal.Fechaalta}" />
+        </Grid>
+        <Grid>
+            <DataGrid ColumnWidth="*" CanUserAddRows="False" AutoGenerateColumns="False" ItemsSource="{Binding listaArticulosFiltro}" SelectedItem="{Binding articuloSeleccionadoReal}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Nº de serie" Binding="{Binding Numserie}"/>
+                    <DataGridTextColumn Header="Departamento" Binding="{Binding DepartamentoNavigation}" />
+                    <DataGridTemplateColumn Header="Fecha de alta">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <DatePicker SelectedDate="{Binding Fechaalta}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+    </DockPanel>
+</UserControl>

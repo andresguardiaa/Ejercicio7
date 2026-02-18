@@ -51,10 +51,16 @@
                         <TextBlock Text="Map Marker" Foreground="White" FontSize="16" FontWeight="Light"/>
                     </StackPanel>
                 </Button>
-                <Button HorizontalAlignment="Stretch" BorderBrush="Transparent" Background="Transparent" HorizontalContentAlignment="Left">
+                <Button HorizontalAlignment="Stretch" BorderBrush="Transparent" Background="Transparent" x:Name="btnListaArticulos" Click="btnListaArticulos_Click" HorizontalContentAlignment="Left">
                     <StackPanel Orientation="Horizontal" Margin="-10,0,0,0" >
                         <materialDesign:PackIcon Kind="Speedometer" Foreground="White" Margin="0,0,5,0"/>
-                        <TextBlock Text="Assitant" Foreground="White" FontSize="16" FontWeight="Light"/>
+                        <TextBlock Text="UCListaArticulo" Foreground="White" FontSize="16" FontWeight="Light"/>
+                    </StackPanel>
+                </Button>
+                <Button HorizontalAlignment="Stretch" BorderBrush="Transparent" Background="Transparent" x:Name="btnTreeViewArticulos" Click="btnTreeViewArticulos_Click" HorizontalContentAlignment="Left">
+                    <StackPanel Orientation="Horizontal" Margin="-10,0,0,0" >
+                        <materialDesign:PackIcon Kind="Speedometer" Foreground="White" Margin="0,0,5,0"/>
+                        <TextBlock Text="Treeview" Foreground="White" FontSize="16" FontWeight="Light"/>
                     </StackPanel>
                 </Button>
 

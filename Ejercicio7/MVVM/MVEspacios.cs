@@ -56,7 +56,7 @@ namespace Ejercicio7.MVVM
             }
         }
 
-        public async Task InicializaListas()
+        private async Task InicializaListas()
         {
             _espacios = await GetAllAsync(_espacioRepository);
             _departamentos = await GetAllAsync(_departamentoRepository);
